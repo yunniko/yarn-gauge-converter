@@ -34,14 +34,23 @@ conventions in `E:\CLAUDE\COMPANY\GOALS.md`.
       examples), 4 tool pages, 24 Vitest unit tests, 5 Playwright e2e
       tests. All verified locally (`npm run build`, `npx vitest run`,
       `npx playwright test`, `npx eslint .` all clean). ✔ 2026-09-07.
-- [ ] M2 — Deploy: git repo, push, clone to VPS, docker compose up,
-      `julai-new-vhost` (first real test of the fixed script — see
-      `svc-lab/HANDOVER.md` D6), verify live over HTTPS, confirm no other
-      site on the host was affected.
+- [x] M2 — Deploy: git repo (`yunniko/yarn-gauge-converter`, public),
+      pushed, cloned to VPS, `docker compose --profile app up` on port
+      30050, `julai-new-vhost` ran clean in one shot (first real test of
+      the Owner's fix — see `svc-lab/HANDOVER.md` D6 — vhost, log
+      directory, and TLS cert all created correctly with no manual
+      workaround needed), verified live over HTTPS at
+      https://yarn.svc.julienika.cz — real browser check on `/gauge` and
+      every other host container's uptime confirmed unaffected.
+      ✔ 2026-09-07.
 - [ ] M3 — Monetization once an ad/payment account exists (blocked on
       Owner, same as fraction-calculator).
 
 **Progress log** (newest first):
+- 2026-09-07 — M2 complete. Deployed to https://yarn.svc.julienika.cz.
+  The fixed `julai-new-vhost` script worked end-to-end with no manual
+  intervention — confirms the Owner's fix (D6) resolved both the
+  certbot-args bug and the missing log-directory gap.
 - 2026-09-07 — M1 complete, verified locally. Data sourcing documented
   in HANDOVER.md — every table cites where it came from and flags which
   parts are official-standard vs. best-effort community convention.

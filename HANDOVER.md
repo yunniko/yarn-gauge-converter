@@ -6,10 +6,14 @@ in `E:\CLAUDE\COMPANY\`.
 
 ## Current state
 
-M1 done and verified locally 2026-09-07: 24 Vitest unit tests, 5
-Playwright e2e tests (real Chromium browser), ESLint clean, `npm run
-build` succeeds with every route statically prerendered. Not yet
-deployed (M2).
+**Live at https://yarn.svc.julienika.cz** (deployed 2026-09-07). M1 and
+M2 both done and verified: 24 Vitest unit tests, 5 Playwright e2e tests,
+ESLint, and `npm run build` all pass locally; in production, verified a
+real browser computation on `/gauge` and confirmed every other container
+on the shared VPS kept its prior uptime. This deploy also served as the
+first real test of the Owner's `julai-new-vhost` fix (see
+`svc-lab/HANDOVER.md` D6) — it ran clean end-to-end with no manual
+certbot workaround needed, confirming the fix worked.
 
 ## How things fit together
 
@@ -80,9 +84,6 @@ picked up.
 
 ## Next steps and open questions
 
-- Deploy (M2) via the now-fixed `julai-new-vhost` script (see
-  `svc-lab/HANDOVER.md` D6) — this deploy is also that fix's first real
-  test.
 - Consider adding a yarn substitution/yardage calculator (D5) as a
   follow-up if this service's traffic justifies more investment.
 - Monetization not yet live — blocked on the Owner (see
