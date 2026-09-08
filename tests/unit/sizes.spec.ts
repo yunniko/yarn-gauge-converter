@@ -34,6 +34,27 @@ describe("hook sizes", () => {
       expect(HOOK_SIZES[i].mm).toBeGreaterThan(HOOK_SIZES[i - 1].mm);
     }
   });
+
+  it("uses the CYC-corrected dual-brand US labels at 9mm and 10mm", () => {
+    // A domain-expert review (2026-09-08) found the previous single-letter
+    // labels (M/13, N/15) were wrong per the Craft Yarn Council's own
+    // chart - M and N are the same physical size under different brands'
+    // (Boye vs. Susan Bates) conventions, and both letters are real.
+    expect(findHookByMm(9.0).size.us).toBe("M/N-13");
+    expect(findHookByMm(10.0).size.us).toBe("N/P-15");
+  });
+
+  it("resolves previously-missing common sizes (2.5, 3.0, 7.0, 11.5, 16, 25mm)", () => {
+    // These mm values had no row at all before the 2026-09-08 review,
+    // so a lookup for e.g. a real UK-11 (3.0mm) or UK-2 (7.0mm) hook
+    // silently fell back to an inexact nearest match.
+    expect(findHookByMm(2.5).exact).toBe(true);
+    expect(findHookByUk("11")?.mm).toBe(3.0);
+    expect(findHookByUk("2")?.mm).toBe(7.0);
+    expect(findHookByUs("P-16")?.mm).toBe(11.5);
+    expect(findHookByUs("Q")?.mm).toBe(16.0);
+    expect(findHookByUs("T/U/X")?.mm).toBe(25.0);
+  });
 });
 
 describe("needle sizes", () => {
@@ -58,6 +79,19 @@ describe("needle sizes", () => {
     for (let i = 1; i < NEEDLE_SIZES.length; i++) {
       expect(NEEDLE_SIZES[i].mm).toBeGreaterThan(NEEDLE_SIZES[i - 1].mm);
     }
+  });
+
+  it("resolves US 000/00 needles, matching yarn-weights.ts's own Lace recommendation", () => {
+    // These rows were missing entirely before the 2026-09-08 review, even
+    // though lib/yarn-weights.ts recommends "US 000-1" for category 0.
+    expect(findNeedleByUs("000")?.mm).toBe(1.5);
+    expect(findNeedleByUs("00")?.mm).toBe(1.75);
+  });
+
+  it("follows the Craft Yarn Council's own chart at the top end (15mm = US 19)", () => {
+    // A domain-expert review found this file previously said 16mm = US 19,
+    // following a different (non-CYC) source; CYC's own chart says 15mm.
+    expect(findNeedleByUs("19")?.mm).toBe(15.0);
   });
 });
 

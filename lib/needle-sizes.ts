@@ -1,8 +1,21 @@
 // Source: cross-checked against Sheep & Stitch's knitting needle conversion
-// chart and the Craft Yarn Council's needle recommendations by yarn weight
-// (retrieved 2026-09-07). US and UK sizing run in opposite directions (US
-// counts up with size, UK counts down), which is the single most common
-// source of confusion this table exists to resolve.
+// chart and the Craft Yarn Council's own official hooks-and-needles chart
+// (craftyarncouncil.com/standards/hooks-and-needles, verified directly by
+// a domain-expert review 2026-09-08 -- see docs/domain-reference.md). US
+// and UK sizing run in opposite directions (US counts up with size, UK
+// counts down), which is the single most common source of confusion this
+// table exists to resolve.
+//
+// Corrected 2026-09-08: added the 1.5mm/1.75mm rows (US 000/00) that were
+// missing entirely -- yarn-weights.ts recommends US 000-1 needles for
+// category 0 (Lace), but this table started at US 0, so a lookup for the
+// needle size that category's own recommendation names would fail. Also
+// fixed a genuine cross-source disagreement at the top end: this file
+// previously said 16.0mm = US 19 (following Vogue Knitting/Fabulous
+// Yarn); CYC's own chart says 15.0mm = US 19 instead. Sources disagree
+// here and there's no way to reconcile it into one number, so this now
+// follows CYC (the one official standards body) rather than splitting
+// the difference or keeping two rows that would both claim "19".
 
 export type NeedleSize = {
   mm: number;
@@ -11,6 +24,8 @@ export type NeedleSize = {
 };
 
 export const NEEDLE_SIZES: NeedleSize[] = [
+  { mm: 1.5, us: "000", uk: null },
+  { mm: 1.75, us: "00", uk: null },
   { mm: 2.0, us: "0", uk: "14" },
   { mm: 2.25, us: "1", uk: "13" },
   { mm: 2.5, us: "1.5", uk: null },
@@ -31,7 +46,7 @@ export const NEEDLE_SIZES: NeedleSize[] = [
   { mm: 9.0, us: "13", uk: "00" },
   { mm: 10.0, us: "15", uk: "000" },
   { mm: 12.75, us: "17", uk: null },
-  { mm: 16.0, us: "19", uk: null },
+  { mm: 15.0, us: "19", uk: null },
   { mm: 19.0, us: "35", uk: null },
   { mm: 20.0, us: "36", uk: null },
   { mm: 25.0, us: "50", uk: null },

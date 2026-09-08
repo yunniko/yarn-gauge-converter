@@ -51,11 +51,15 @@ Standard Yarn Weight System page (the one official body for this). The
 UK/Australian name column has no equivalent official source — no single
 body maps US names onto UK/AU ply/word names — so it's synthesized from
 several independent guides and marked `confidence: "approximate"` on
-the categories where sources disagreed most (Fine/#2, Bulky/#5, Super
-Bulky/#6, Jumbo/#7), with an explicit on-page disclaimer. The hook and
-needle mm/US/UK tables were cross-checked against two independently
-stated worked examples (US H-8 = UK 6 = 5.0mm; US J-10 = UK 4 = 6.0mm)
-that both matched — not just taken from a single source on faith.
+the categories where sources disagreed most, with an explicit on-page
+disclaimer. (Correction, 2026-09-08: this entry originally said the
+hook/needle tables were "cross-checked" against two worked examples
+[US H-8 = UK 6 = 5.0mm; US J-10 = UK 4 = 6.0mm] — a domain-expert review
+pointed out both examples sit inside the one mm range every source
+already agrees on [4.0-6.5mm], so they couldn't have caught the real
+errors that existed elsewhere in the table. See D6 for what a proper
+review against the Craft Yarn Council's own hook/needle chart actually
+found and fixed.)
 
 **D3 — UK sizes stored as strings, not numbers.** UK hook/needle sizing
 includes "0", "00", "000" as genuinely distinct sizes (larger number of
@@ -81,6 +85,40 @@ simultaneously) is a distinct enough feature to be its own follow-up
 rather than something rushed into today's build. Left as an open item
 below rather than a backlog idea, since it belongs to this project if
 picked up.
+
+**D6 — Domain-expert review (2026-09-08) found and fixed real data
+errors, not just presentation issues.** Per `COMPANY\STANDARDS.md`'s
+"Domain depth" guidance, a `domain-expert` subagent reviewed all three
+reference tables against the Craft Yarn Council's own official
+hooks-and-needles chart (a more authoritative source than the community
+charts D2 originally cited alone) and against real UK-sizing
+cross-source comparisons. Full findings in `docs/domain-reference.md`.
+The CYC yarn-weight table itself checked out accurate. Fixed:
+- **Real hook-label errors**: 9mm and 10mm were labeled "M/13" and
+  "N/15" — CYC's own chart gives dual-brand labels "M/N-13" and
+  "N/P-15" (Boye vs. Susan Bates name the same physical size
+  differently). A hook actually stamped "N" or "P" wouldn't have
+  matched the old single-letter labels.
+- **Missing rows that broke real lookups**: `hook-sizes.ts` had no row
+  at 2.5, 3.0, 7.0, 11.5, 16, or 25mm; `needle-sizes.ts` had no US 000/00
+  rows even though `yarn-weights.ts` recommends exactly those sizes for
+  category 0. Both fixed.
+- **A genuine cross-source disagreement at the needle table's top end**
+  (15mm vs 16mm for US 19) — resolved in favor of CYC, the one official
+  body, rather than the community chart this file followed before.
+- **Two overclaimed confidence markers**: category 4 (Aran/10ply) was
+  marked `"standard"` despite being, per the review, "the single most
+  contested equivalence in the whole table" (US worsted and UK Aran
+  measurably differ in gauge); category 0's UK/AU naming was also marked
+  `"standard"` despite CYC's own category 0 spanning cobweb through
+  10-count thread. Both changed to `"approximate"`.
+- **A citation that couldn't be verified**: this file's header credited
+  CYC's own "YDKWYDK" blog post as a UK/AU-mapping source; a direct
+  fetch during the review found no such mapping on that page. Dropped
+  as a citation pending re-confirmation.
+- **A real data error**: category 0's crochet gauge (32-42 sts/4in) is
+  specifically measured in double crochets per CYC — the only row
+  measured that way — and the field didn't say so.
 
 ## Next steps and open questions
 

@@ -1,15 +1,20 @@
 // Source: Craft Yarn Council Standard Yarn Weight System
-// https://www.craftyarncouncil.com/standards/yarn-weight-system (retrieved 2026-09-07)
-// The 0-7 category numbers, US names, and gauge/hook/needle figures below are
-// that official standard. The "ukAu" column is NOT part of any official
-// cross-body standard -- there is no single body that maps US categories onto
-// UK/Australian ply and word names -- it's a best-effort synthesis of several
-// independent guides (Craft Yarn Council's own "YDKWYDK" blog post, LoveCrafts'
-// "Yarn Weights Translated", Handy Little Me's yarn weight guide), all of which
-// carry some version of the same disclaimer: regional yarn naming isn't
-// strictly standardized and varies by brand. Treat the ukAu field as a common
-// approximation, not an exact equivalence -- always check a specific yarn's
-// gauge/ply on its own label when it matters.
+// https://www.craftyarncouncil.com/standards/yarn-weight-system, independently
+// re-verified directly by a domain-expert review 2026-09-08 against CYC's own
+// page and a second independent restatement (yarn.com) -- see
+// docs/domain-reference.md. The 0-7 category numbers, US names, and
+// gauge/hook/needle figures below match the official standard exactly. The
+// "ukAu" column is NOT part of any official cross-body standard -- there is
+// no single body that maps US categories onto UK/Australian ply and word
+// names -- it's a best-effort synthesis of several independent guides
+// (LoveCrafts' "Yarn Weights Translated", Handy Little Me's yarn weight
+// guide, yarn.com's chart). Note: the 2026-09-08 review could not confirm a
+// UK/AU mapping on Craft Yarn Council's own "YDKWYDK" blog post (previously
+// cited here as a source for that column) when fetched directly -- dropped
+// as a citation for the ukAu column pending re-confirmation; CYC remains the
+// correct citation for everything else in this file. Treat the ukAu field as
+// a common approximation, not an exact equivalence -- always check a
+// specific yarn's gauge/ply on its own label when it matters.
 
 export type YarnWeight = {
   category: number;
@@ -32,12 +37,12 @@ export const YARN_WEIGHTS: YarnWeight[] = [
     otherUsNames: "Fingering (10-count crochet thread)",
     ukAu: "Lace / 1-2 ply",
     knitGauge: "33-40 sts",
-    crochetGauge: "32-42 sts",
+    crochetGauge: "32-42 double crochets",
     needleUs: "000-1",
     needleMm: "1.5-2.25",
     hookUs: "Steel 6-8, Regular B-1",
     hookMm: "1.4-2.25",
-    confidence: "standard",
+    confidence: "approximate",
   },
   {
     category: 1,
@@ -89,7 +94,13 @@ export const YARN_WEIGHTS: YarnWeight[] = [
     needleMm: "4.5-5.5",
     hookUs: "I-9 to K-10.5",
     hookMm: "5.5-6.5",
-    confidence: "standard",
+    // Marked approximate 2026-09-08: a domain-expert review found this was
+    // the single most contested equivalence in the whole table (previously
+    // marked "standard"). CYC category 4 spans both "worsted" and "Aran",
+    // but a real source (yarn.com) documents a genuine ~2-3 sts/4in gauge
+    // difference between them -- US worsted and UK Aran are close, not
+    // identical, despite both sitting in the same CYC category.
+    confidence: "approximate",
   },
   {
     category: 5,
