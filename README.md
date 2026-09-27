@@ -1,5 +1,10 @@
 # yarn-gauge-converter
 
+> **SUSPENDED (Owner, 2026-09-27)** — part of the svc-lab family, suspended because it did not work out as expected.
+> No new work; security upkeep only while anything of it is live. Treat its code, formulas and
+> decisions as a **lower-reliability reference**: they may or may not still work, so re-verify before
+> reusing anything. Rules: `E:\CLAUDE\COMPANY\GOALS.md` → "Suspended projects".
+
 Four small tools for knitters and crocheters: a yarn weight chart (US/UK/AU
 naming), a crochet hook size converter, a knitting needle size converter,
 and a gauge calculator that rescales a pattern's stitch/row count to your
